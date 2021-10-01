@@ -1,0 +1,25 @@
+---
+version: '3.8'
+services:
+
+  prd-rtsp-server-app:
+    image: docker-registry.theautomation.nl/coen/prd-rtsp-server-app:latest
+    container_name: prd-rtsp-server-app
+    restart: always
+    ports:
+      - 8554:8554
+      - 1935:1935
+    networks:
+      home-services:
+    volumes:
+      - ./config/rtsp-simple-server.yml:/rtsp-simple-server.yml
+
+# NETWORKS
+networks:
+
+  home-services:
+    driver: bridge
+    name: home-services
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
