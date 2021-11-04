@@ -10,16 +10,14 @@ services:
       - 8554:8554
       - 1935:1935
     networks:
-      home-services:
+      - rtsp-server
     volumes:
       - ./config/rtsp-simple-server.yml:/rtsp-simple-server.yml
 
-# NETWORKS
 networks:
-
-  home-services:
+  rtsp-server:
+    name: rtsp-server
     driver: bridge
-    name: home-services
     ipam:
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 172.23.0.0/16
